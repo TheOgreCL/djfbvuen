@@ -150,32 +150,22 @@ if (count($productos) === 0) {
         foreach ($fila as $producto) {
             $html .= '<td class="producto">';
 
+
+
+
+
+            //Arreglar para visualizar png
             // Obtener la imagen desde la carpeta img
-            $nombreArchivo = basename($producto["imagen"] ?? "");
-            $rutaArchivo = __DIR__ . "/../img/" . $nombreArchivo;
+     $nombreArchivo = ($producto["imagen"] ?? "");
+    $urlImagen = "http://localhost/panel_empresas/img/" .
+                ($nombreArchivo);
+    if ($nombreArchivo !== "") {
+        $html .= '<img src="' . htmlspecialchars($urlImagen, ENT_QUOTES, "UTF-8") . '" alt="Imagen del producto">';
+    } else {
+        $html .= '<div class="sin-imagen">Sin imagen</div>';
+    }
 
-            if (
-                $nombreArchivo !== "" &&
-                is_file($rutaArchivo)
-            ) {
-                $tipo = mime_content_type($rutaArchivo);
-
-                if (in_array($tipo, array(
-                    "image/jpeg",
-                    "image/png"
-                ), true)) {
-                    $datosImagen = base64_encode(
-                        file_get_contents($rutaArchivo)
-                    );
-
-                    $html .= '<img src="data:' . $tipo .
-                             ';base64,' . $datosImagen . '" alt="Imagen del producto">';
-                } else {
-                    $html .= '<div class="sin-imagen">Imagen no disponible</div>';
-                }
-            } else {
-                $html .= '<div class="sin-imagen">Sin imagen</div>';
-            }
+            //////////////////////////////////////////////////////////////
 
             $html .= '
                 <div class="nombre">' . h($producto["nombre"]) . '</div>
@@ -209,7 +199,7 @@ $html .= '
 
 // Configurar y generar el PDF
 $options = new Options();
-$options->set("isRemoteEnabled", false);
+$options->set("isRemoteEnabled", true);
 $options->setChroot(realpath(__DIR__ . "/.."));
 
 $dompdf = new Dompdf($options);
