@@ -1,0 +1,13 @@
+De mi para mi, proeyecto en curso aun
+
+-3 cruds, uno dentro de otro practicamente
+
+-Recordar ver lo del tamaño de las imagenes, hacen que igual tarde un poquito en cargar el pdf
+-Hacer que sea posible añadir pnges, que puedan ser visualizados en el doc
+-Posibles optimizacion del codigo y archivos, aunque igual esta ordenado, para que estamos
+
+-Quizas ir haciendo una interfaz bonita a todo esto
+-Por ahora funciona 28/10
+-Joder, cuanto espacio ocupa el html de como se vera el pdf, quizas meterlo en un archivo aparte y llamarlo no mas
+
+-
